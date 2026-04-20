@@ -1,7 +1,7 @@
 # Group4 - Handset Detection 
 Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the I/O pins
 
-## Updates
+## Contribution
 ### Stimson
 - 19 Apr
     - Added `Snapshot.py` for data collection
