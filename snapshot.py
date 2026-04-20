@@ -26,8 +26,8 @@ sensor.set_hmirror(1) # horizontal mirror for proper directions
 
 
 # Initalizing vairables
-class_name = 'left'  # right, forward, backward
-samples = 20  # samples to collect 
+class_name = 'forward'  # right, forward, backward
+samples = 20  # samples to collect
 delay = 2000  # 2 seconds
 sample_number = 20  # Dataset numbering (use the starting number) I've used 20 to collect data from class_20 - class_40
 
