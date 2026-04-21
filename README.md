@@ -22,7 +22,7 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - Have cloned the repo.
 
 ### Musab
-- Naming Format for Photos
+- Added file handling to snapshot.py. Updated dataset 80-100 with added Unknown class.
 
 1-20 Abhishek 
 21-40 Stimson
