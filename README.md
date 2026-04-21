@@ -7,6 +7,8 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Added `Snapshot.py` for data collection
         - NOTES: The folder will be created on the OpenMV device under the folder 'handset_dataset'. Once all the files are created please move it to the 'dataset' folder in the repo. Make sure to use the dataset numbering as discussed in the group.
     - BUG FIX: `Snapshot.py` - updated the horizontal mirror to reflect proper direction.
+- 20 Apr
+    - Added Data for each class numbering from 21 to 40 set it up as a small quiz to complete over the next couple of days for
 
 
 ### Ryan 
