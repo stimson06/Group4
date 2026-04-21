@@ -24,13 +24,26 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 ### Musab
 - Added file handling to snapshot.py. Updated dataset 80-100 with added Unknown class.
 
+### Abhishek
+- 18 April 2026
+  - Cloned the repo
+- 20 April 2026
+  - Reviewed Ryan's PR
+- 21 April 2026
+  - Cleared extra code from  repo and Pushed Dataset to repo
+
+
+
+### DATASET NUMBER ALLOCATION
 1-20 Abhishek 
 21-40 Stimson
 41-60 Parikshit 
 61-80 Ryan
 81-100 Musab
 
+### DATASET LABEL NAMING CONVENTION
 left_01
 right_01
 forward_01
 backward_01
+unknown_01

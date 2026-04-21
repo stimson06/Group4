@@ -12,10 +12,10 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time=2000)
 
 # Dataset settings
-class_name = "backward"      # left, right, forward, backward
+class_name = "unknown"  # left, right, forward, backward, unknown
 samples = 20             # Ryan: 20 samples
 delay = 5000             # 5 seconds
-sample_number = 60       # Ryan starts from 61
+sample_number = 0        # Ryan starts from 61
 
 # Save folder in internal flash
 save_dir = "/flash/handset_dataset"
