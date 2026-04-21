@@ -11,28 +11,28 @@ Dataset collection numbering
 81-100 Musab
 """
 
-# Snapshot.py
 import sensor
 import time
 import os
+import gc
 from machine import LED
 
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)
+sensor.skip_frames(time=2000)
+sensor.set_hmirror(1)
 
-sensor.reset()  # Reset and initialize the sensor.
-sensor.set_pixformat(sensor.RGB565)  # Set pixel format to RGB565 (or GRAYSCALE)
-sensor.set_framesize(sensor.QVGA)  # Set frame size to QVGA (320x240)
-sensor.skip_frames(time=2000)  # Wait for settings take effect.
-sensor.set_hmirror(1) # horizontal mirror for proper directions
+# Initializing variables
+class_name = 'left'   # change to: right, forward, backward
+samples = 20
+sample_number = 80    # Musab: 80+1=81 ... 80+20=100
 
+countdown_blinks = 3 # No. of Blinks the LED does before the photo is taken
+blink_interval   = 500 # Time interval btwn Blinks in ms
+green_flash      = 300 # How long Green Blink happens in the LED post capture 
 
-# Initalizing vairables
-class_name = 'left'  # right, forward, backward
-samples = 20  # samples to collect 
-delay = 2000  # 2 seconds
-sample_number = 20  # Dataset numbering (use the starting number) I've used 20 to collect data from class_20 - class_40
-
-
-# Creating dir
+# Creating dir & file handeling to ensure file are not corrupt on write 
 current_dir = os.getcwd()
 folder_name = 'handset_dataset'
 if not folder_name in os.listdir(current_dir):
@@ -42,28 +42,55 @@ else:
     print(f"Folder already exists at: {current_dir}/{folder_name}")
 save_root_path = f"{current_dir}/{folder_name}/"
 
-print(f"Starting to capture images for {class_name}")
+# Print statements to terminal for clarity while taking photos  
+print(f"\nStarting capture for class : {class_name}")
+print(f"Saving                     : {class_name}_{sample_number+1}.jpg  -->  {class_name}_{sample_number+samples}.jpg")
+print(f"Countdown                  : {countdown_blinks} red blinks then capture\n")
 
-red = LED("LED_RED")  # for waiting period
-green = LED("LED_GREEN")  # for capturing
-time.sleep_ms(delay)
+red   = LED("LED_RED")
+green = LED("LED_GREEN")
 
-# Capturing loop
-for i in range(1, samples+1):
-    red.off()
+red.off()
+green.off()
+time.sleep_ms(2000)
+
+for i in range(1, samples + 1):
+
+    print(f"Image {i}/{samples} -- get your hand in position...")
+
+    # Countdown blinks on red LED
+    for blink in range(countdown_blinks):
+        red.on()
+        time.sleep_ms(blink_interval)
+        red.off()
+        time.sleep_ms(blink_interval)
+
+    # Capture
     green.on()
-
-    # capture
     img = sensor.snapshot()
+    img_name = f"{class_name}_{sample_number + i}.jpg"
+    file_path = save_root_path + img_name
 
-    img_name = f"{class_name}_{sample_number+i}.jpg"
+    # Write image using explicit file handle so we can flush properly
+    with open(file_path, 'wb') as f:
+        buf = img.compress(quality=85)
+        f.write(buf)
+        f.flush()           # flush write buffer to filesystem layer
 
-    # Save the image to dataset
-    file_path = save_root_path+img_name
+    os.sync()              # commit filesystem to flash storage
+    gc.collect()           # free memory immediately
 
-    img.save(file_path)
-    print(f"Saved: {file_path}")
+    print(f"Saved + synced : {img_name}  ({i}/{samples})")
 
+    time.sleep_ms(green_flash)
     green.off()
-    red.on()
-    time.sleep_ms(delay)
+
+    time.sleep_ms(1500)
+
+# Final sync at the end cause it doesnt hurt to be safe
+os.sync()
+
+red.off()
+green.off()
+print(f"\nAll {samples} images captured for class: {class_name}")
+print("Safe to disconnect or access drive now.")
