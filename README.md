@@ -31,7 +31,17 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - Have cloned the repo.
 
 ### Musab
-- Added file handling to snapshot.py. Updated dataset 80-100 with added Unknown class.
+- 20-April
+    - Pulled Snapshot.py. Run on OpenMV. 
+    - Forgot to remove lens cap and "took" photos initially. Was pointed out by roomate
+    - Encountered corrupted photos and unable to access files on device flash
+    
+- 21-April
+    - Added file handling to snapshot.py to fix corrupted files. 
+    - Updated dataset 80-100 with 4 specified classes.
+    - Added Unknown class of variables as discussed on call
+    - Suggest using https://www.kaggle.com/datasets/gti-upm/leapgestrecog/data to populate classes for more data variety
+
 
 ### Abhishek
 - 18 April 2026
@@ -48,7 +58,7 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 21-40 Stimson
 41-60 Parikshit 
 61-80 Ryan
-81-100 Musab
+81-100 Musab (Done)
 
 ### DATASET LABEL NAMING CONVENTION
 left_01
