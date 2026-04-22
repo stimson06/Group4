@@ -41,7 +41,15 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Updated dataset 80-100 with 4 specified classes.
     - Added Unknown class of variables as discussed on call
     - Suggest using https://www.kaggle.com/datasets/gti-upm/leapgestrecog/data to populate classes for more data variety
-
+- 22-April
+    - Used Google Collab to explore and populate dataset. Due to the nature of the dataset & it's existing classes it was not possible to  add to certain classes.
+    - Final combined dataset totals:
+    left         : 80 total  
+    right        : 4080 total 
+    forward      : 8080 total 
+    backward     : 60 total  
+    unknown      : 28040 total
+    - Added data to G-Drive at [Here](https://drive.google.com/file/d/1IQuS8np7JFvzbITBBlJAlh969T3mQS4s/view?usp=drive_link)
 
 ### Abhishek
 - 18 April 2026
