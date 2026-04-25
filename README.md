@@ -12,21 +12,30 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 
 
 ### Ryan 
-- Have understood and agreed to the project. Github repo is created and is added people.
-- Everyone create their own python file and we work on it separately. So we dont overlap also we can pull and see each other work.
-- I have added a file for my python file Ryan.py and I have added a print statement to test it.
-- I had an issue with the saving the snap so I changed the snapshot code to a different one. If anyone else also facing the issue I have uploaded the code separately. So it doesnt get mixed.
-- I have created my data set. I would like you all to check the dataset and let me know if there is any changes or if any improvements.
-- The dataset is created under the `handset_dataset` folder. My sample number as discussed starts from 61-80.
-- The dataset obtained by Musab from Kaggle was accessed and downloaded for further processing. The dataset was originally organized into multiple classes representing different hand gestures (e.g., index finger, thumb), comprising approximately nine distinct categories. Each class was manually reviewed by inspecting the images within its respective folder to determine the directional gesture it represented, such as forward, backward, left, right, or unknown.
+- 18 - 19 Apr    
+    - Have understood and agreed to the project. Github repo is created and is added people.
+    - Everyone create their own python file and we work on it separately. So we dont overlap also we can pull and see each other work.
+    - I have added a file for my python file Ryan.py and I have added a print statement to test it.
+    - I had an issue with the saving the snap so I changed the snapshot code to a different one. If anyone else also facing the issue I have uploaded the code separately. So it doesnt get mixed.
+- 20 Apr
+    - I have created my data set. I would like you all to check the dataset and let me know if there is any changes or if any improvements.
+    - The dataset is created under the `handset_dataset` folder. My sample number as discussed starts from 61-80.
+- 23-24 Apr
+    - The dataset obtained by Musab from Kaggle was accessed and downloaded for further processing. The dataset was originally organized into multiple classes representing different hand gestures (e.g., index finger, thumb), comprising approximately nine distinct categories. Each class was manually reviewed by inspecting the images within its respective folder to determine the directional gesture it represented, such as forward, backward, left, right, or unknown.
+    - Following this inspection, images corresponding to each directional category were reorganized accordingly. For instance, all images identified as representing the “forward” gesture were copied into a dedicated forward class folder. This process resulted in an initial distribution of approximately 7,800 images for the forward class, 1,800 images for the right class, and around 9,800 images categorized as unknown.
+    - To address class imbalance and improve model performance, data augmentation techniques were applied. Since an equal number of samples was required across all classes, and excessive data volume was unnecessary, augmentation was used to generate additional samples. Specifically, images from the right class (e.g., thumb pointing right) were transformed through rotation and other augmentation methods to simulate forward gestures (e.g., upward direction). These augmented images were then incorporated into the forward class. As a result, while the right class initially contained only a single variation, the forward class was enriched with multiple variations (increasing from four to five distinct visual patterns).
+    - Subsequently, similar augmentation strategies were applied to generate balanced representations for all directional classes, including left, right, forward, and backward. This process yielded approximately 9,600 images per class. Finally, the dataset was randomized, and a subset of 2,500 images from each class was selected and consolidated into a separate folder labeled “augmented data” for model training and evaluation.
+    - Augmented data can be found here https://www.kaggle.com/datasets/ryanbijujoseph/augmented-hand-data/data
 
-- Following this inspection, images corresponding to each directional category were reorganized accordingly. For instance, all images identified as representing the “forward” gesture were copied into a dedicated forward class folder. This process resulted in an initial distribution of approximately 7,800 images for the forward class, 1,800 images for the right class, and around 9,800 images categorized as unknown.
+- 25 April
+    - As of 25 April, additional preprocessing was conducted on the “unknown” class, which had not been incorporated into the balanced dataset during the initial stage. Previously, 2,500 images had been selected for each of the directional classes (forward, backward, left, and right), while the unknown class remained unprocessed. The original dataset obtained from Kaggle contained approximately 9,800 images labeled as unknown, supplemented by an additional 100 images generated independently.
 
-- To address class imbalance and improve model performance, data augmentation techniques were applied. Since an equal number of samples was required across all classes, and excessive data volume was unnecessary, augmentation was used to generate additional samples. Specifically, images from the right class (e.g., thumb pointing right) were transformed through rotation and other augmentation methods to simulate forward gestures (e.g., upward direction). These augmented images were then incorporated into the forward class. As a result, while the right class initially contained only a single variation, the forward class was enriched with multiple variations (increasing from four to five distinct visual patterns).
+    - To ensure consistency with the other classes and to improve model generalization, data augmentation was applied to the unknown dataset. The original unknown images were predominantly captured in a single orientation, which could limit the model’s ability to correctly classify unseen variations. To address this, the images were augmented into three distinct orientations, thereby increasing diversity in the dataset. As a result, the unknown dataset expanded from 9,800 images to approximately 29,400 images.
 
-- Subsequently, similar augmentation strategies were applied to generate balanced representations for all directional classes, including left, right, forward, and backward. This process yielded approximately 9,600 images per class. Finally, the dataset was randomized, and a subset of 2,500 images from each class was selected and consolidated into a separate folder labeled “augmented data” for model training and evaluation.
-- Augmented data can be found here https://www.kaggle.com/datasets/ryanbijujoseph/augmented-hand-data/data
+    - From this augmented set, a random sample of 2,500 images was selected and organized into a dedicated “unknown” class folder. Additionally, the manually created unknown images were incorporated into this dataset to further enhance variability. Following this process, all classes—forward, backward, left, right, and unknown—were standardized to contain an equal number of samples.
 
+    - In the final dataset, each class comprises approximately 2,600 images, ensuring a balanced distribution suitable for model training. This uniformity reduces class bias and supports improved model performance. Furthermore, additional randomization techniques can be applied during the training phase to enhance generalization and robustness of the model.
+    - the last dataset was deleted and te new dataset is uploaded on the link https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset
 ### Parikshit
 - 12 APR Cloned the repo
 - 20 APR 2026
