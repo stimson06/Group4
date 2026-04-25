@@ -36,6 +36,7 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 
     - In the final dataset, each class comprises approximately 2,600 images, ensuring a balanced distribution suitable for model training. This uniformity reduces class bias and supports improved model performance. Furthermore, additional randomization techniques can be applied during the training phase to enhance generalization and robustness of the model.
     - the last dataset was deleted and te new dataset is uploaded on the link https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset
+    - in data_augmentation.ipynb there is code in last code cell that will directly download the dataset from kaggle and save it in the required folder.
 ### Parikshit
 - 12 APR Cloned the repo
 - 20 APR 2026
