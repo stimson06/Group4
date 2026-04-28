@@ -102,6 +102,3 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
   - Reviewed Ryan's PR
 - 21 April 2026
   - Cleared extra code from  repo and Pushed Dataset to repo
-
-
-
