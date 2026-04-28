@@ -32,11 +32,19 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 ## Contribution
 ### Stimson
 - 19 Apr
-    - Added `Snapshot.py` for data collection
-        - NOTES: The folder will be created on the OpenMV device under the folder 'handset_dataset'. Once all the files are created please move it to the 'dataset' folder in the repo. Make sure to use the dataset numbering as discussed in the group.
+  - Added `Snapshot.py` for data collection
+      - NOTES: The folder will be created on the OpenMV device under the folder 'handset_dataset'. Once all the files are created please move it to the 'dataset' folder in the repo. Make sure to use the dataset numbering as discussed in the group.
     - BUG FIX: `Snapshot.py` - updated the horizontal mirror to reflect proper direction.
 - 20 Apr
-    - Added Data for each class numbering from 21 to 40 set it up as a small quiz to complete over the next couple of days for
+    - Added Data for each class numbering from 21 to 40
+
+### Custom model Development with Ryan
+#### **Model Iteration & Performance**
+|Iteration| Timeline | Strategy | Train Acc. | Test Acc. | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **V1 (Initial)** | 21 to 23 Apr  |Base collected data | 79.5%| 82.2% | Directional classes > 80%; "Unknown" class at 50%  |
+| **V2 (Hybrid)** | 24 to 25 Apr |50% Original + 50% Augmented  | 69.0%  | 61.03%  | Attempted to reduce background bias  |
+| **V3 (Final)** |26 to 27 Apr|Entire Augmented Dataset  | **96.9%**  | **94.8%**  | Achieved peak performance; noted plane background bias . |
 
 
 ### Ryan 
