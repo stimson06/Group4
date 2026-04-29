@@ -18,8 +18,6 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - `data_augmentation.ipynb` - Data augmentation performed on Kaggale dataset for our application ([Dataset](https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset))
 - `gesture_led_wifi.py` - Runs on OpenMV RT1062 — loads TFLite model, classifies gesture from camera feed, sends result to ESP32 over WiFi UDP(User Datagram Protocol)
 - `sketch_apr26a.ino` - Runs on ESP32 — receives gesture string via UDP WiFi, lights corresponding LED
-- `models/model 1` - Fine tued Pre-trained model using MobileNet V2 using [Edge Impulse](https://www.edgeimpulse.com)
-- `models/model 2` - A simple CNN architecture build using Edge Impulse.
 - `models/mobilenet_v2_96x96_0.35.tflite` - Fine tuned Pre-trained model using MobileNet V2 in [Edge Impulse](https://www.edgeimpulse.com)
 - `models/simple_model_5_class.tflite` - A simple CNN architecture build using Edge Impulse.
 
@@ -87,34 +85,25 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 
 ### Ryan 
 - 18 - 19 Apr    
-    - Have understood and agreed to the project. Github repo is created and is added people.
-    - Everyone create their own python file and we work on it separately. So we dont overlap also we can pull and see each other work.
-    - I have added a file for my python file Ryan.py and I have added a print statement to test it.
-    - I had an issue with the saving the snap so I changed the snapshot code to a different one. If anyone else also facing the issue I have uploaded the code separately. So it doesnt get mixed.
+    - Cloned the repo.
+    - I had an issue with the saving the snap so I changed the snapshot code to a different one.
 - 20 Apr
-    - I have created my data set. I would like you all to check the dataset and let me know if there is any changes or if any improvements.
+    - I have created my data set. 
     - The dataset is created under the `handset_dataset` folder. My sample number as discussed starts from 61-80.
 - 23–24 April
   - Dataset downloaded from Kaggle (via Musab). It contained ~9 gesture classes (e.g., thumb, index).
   - Each class was manually inspected and re-labeled into directional categories: **forward, backward, left, right, unknown**.
-  -  Images were reorganized into new class folders:
-      - Forward: ~7,800 images  
-      - Right: ~1,800 images  
-      - Unknown: ~9,800 images  
-  - To address class imbalance, data augmentation (e.g., rotation) was applied:
-  - Right-class images were transformed to simulate other directions (e.g., forward).
-  - Forward class diversity increased (4 → 5 variations).
+  - !["After data sorting"](assets/data_after_sort.png)
+  - To address class imbalance, data augmentation (e.g., rotation) was applied.
   - Augmentation applied across all directional classes → ~9,600 images per class.
   - Dataset shuffled; **2,500 images per class** selected → stored in `augmented data`.
-  - Dataset link: https://www.kaggle.com/datasets/ryanbijujoseph/augmented-hand-data/data  
 
 - 25 April
   - Processed the **unknown** class (previously excluded from balancing).
   - Original unknown dataset: ~9,800 + 100 custom images.
   - Augmented into 3 orientations → ~29,400 images.
   - Randomly selected **2,500 images** and added custom images → final unknown class.
-  - All classes (forward, backward, left, right, unknown) balanced.
-  - Final dataset: ~2,600 images per class.
+  - ![Final dataset](assets/final_data.png)
   - Old dataset deleted; new dataset uploaded:
     - https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset
   - `data_augmentation.ipynb` includes code (last cell) to download and save dataset automatically.
