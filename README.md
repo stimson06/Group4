@@ -16,7 +16,10 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 ## Files
 - `Snapshot.py`- To collec the photos
 - `data_augmentation.ipynb` - Data augmentation performed on Kaggale dataset for our application ([Dataset](https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset))
-- `gesture_led_wifi.py` - 
+- `gesture_led_wifi.py` - Runs on OpenMV RT1062 — loads TFLite model, classifies gesture from camera feed, sends result to ESP32 over WiFi UDP(User Datagram Protocol)
+- `sketch_apr26a.ino` - Runs on ESP32 — receives gesture string via UDP WiFi, lights corresponding LED
+- `models/model 1` - Fine tued Pre-trained model using MobileNet V2 using [Edge Impulse](https://www.edgeimpulse.com)
+- `models/model 2` - A simple CNN architecture build using Edge Impulse.
 - `models/mobilenet_v2_96x96_0.35.tflite` - Fine tuned Pre-trained model using MobileNet V2 in [Edge Impulse](https://www.edgeimpulse.com)
 - `models/simple_model_5_class.tflite` - A simple CNN architecture build using Edge Impulse.
 
@@ -26,8 +29,41 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - Update the IP address of the device the Esp 32 is connected.
 - Run the code
 
+### OpenMV Setup
+- Connect the OpenMV device to your system via USB
+- Copy `gesture_led_wifi.py`, `trained.tflite` (or `trained_5_class.tflite`), and `labels.txt` onto the OpenMV device flash
+- Update the WiFi SSID, password and ESP32 IP address in `gesture_led_wifi.py`
+- Run the script via OpenMV IDE or save as `main.py` for standalone boot
+
+### ESP32 Setup
+- Open `sketch_apr26a.ino` in Arduino IDE
+- Install ESP32 board package via Boards Manager (espressif/arduino-esp32)
+- Update WiFi SSID and password in the sketch
+- Upload to ESP32 Dev Board
+- Open Serial Monitor (115200 baud) to get the ESP32 IP address
+- Copy that IP into `gesture_led_wifi.py`
+
+### Hardware Wiring (ESP32 + LEDs)
+| Gesture  | ESP32 Pin | LED |
+|----------|-----------|-----|
+| Left     | D13       | LED 1 |
+| Right    | D12       | LED 2 |
+| Forward  | D14       | LED 3 |
+| Backward | D27       | LED 4 |
+
+- Each LED connected via 220Ω resistor to ESP32 GPIO pin
+- All LED cathodes connected to ESP32 GND
+- Both OpenMV and ESP32 must be on the same WiFi network
+
 ## Output
 - Image or a short video
+
+## Circuit Diagram
+
+![Circuit Diagram](assets/circuit.png)
+
+> OpenMV RT1062 captures hand gesture via camera → runs TFLite inference → 
+> sends gesture label over WiFi UDP → ESP32 receives and lights the corresponding LED.
 
 ## Contribution
 ### Stimson
@@ -90,7 +126,26 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Uploaded/updated my dataset images in handset_dataset/ for my allocation 41–60 (Left / Right / Forward / Backward / Unknown) following the agreed naming convention (e.g., left_41.jpg … unknown_60.jpg).
     - Pushed the dataset with 20 images per class.
     - Added collect_photos.py (script I used to capture/collect the images for the dataset).
-- Have cloned the repo.
+- 28–29 Apr 2026
+    - Built the hardware circuit on breadboard:
+        - Connected 4 red LEDs with 220Ω current-limiting resistors to ESP32 GPIO pins
+          (D13=Left, D12=Right, D14=Forward, D27=Backward)
+        - Wired common GND rail shared between all LEDs and ESP32 GND pin
+        - Connected ESP32 to breadboard with jumper wires on left-side pins only
+          (single-side access due to breadboard size constraints)
+        - Verified circuit by running LED startup test sequence via Arduino Serial Monitor
+        - OpenMV RT1062 connected separately via USB for camera feed and inference
+    - Added `gesture_led_wifi.py` — full inference + WiFi UDP pipeline running on OpenMV RT1062
+        - Loads TFLite model from flash
+        - Runs gesture classification at ~17 FPS
+        - Sends gesture label to ESP32 over UDP when confidence > 60%
+        - Displays prediction and confidence on Frame Buffer
+    - Added `sketch_apr26a.ino` — ESP32 UDP receiver
+        - Connects to WiFi hotspot
+        - Listens on UDP port 5005
+        - Maps received gesture string to GPIO pin → lights LED
+        - Startup LED test sequence on boot
+    - Tested end-to-end pipeline: OpenMV → WiFi → ESP32 → LED
 
 ### Musab
 - 20-April
