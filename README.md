@@ -110,6 +110,9 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
   - Reviewed Ryan's PR
 - 21 April 2026
   - Cleared extra code from  repo and Pushed Dataset to repo
-
-
-
+- 21 April 2026
+  - Cleared extra code from  repo and Pushed Dataset to repo
+- 25 April 2026
+  - Created and Compared multiple CNN models and finalized mobilenet_v2 using 96x96 input dimensions using 0.35 alpha
+  - Achieved 93.7% training accuracy with 500 image dataset created by the team
+  - Achieved 98.8% training accuracy with retraining over augmented data set created by Ryan
