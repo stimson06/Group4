@@ -27,7 +27,8 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - Run the code
 
 ## Output
-- Image or a short video
+- LED Light on breadboard lights up in accordance to the recognized gesture. Lights are arranges in the 4 cardinal directions i.e. North, South, East and West.
+- Each LED represents one class gesture from the dataset. Upon recognition the on board script lights the LED.
 
 ## Contribution
 ### Stimson
