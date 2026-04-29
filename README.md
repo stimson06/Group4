@@ -17,12 +17,12 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 - `Snapshot.py`- To collec the photos
 - `data_augmentation.ipynb` - Data augmentation performed on Kaggale dataset for our application ([Dataset](https://www.kaggle.com/datasets/ryanbijujoseph/hand-gesture-dataset))
 - `gesture_led_wifi.py` - 
-- `models/model 1` - Fine tued Pre-trained model using MobileNet V2 using [Edge Impulse](https://www.edgeimpulse.com)
-- `models/model 2` - A simple CNN architecture build using Edge Impulse.
+- `models/mobilenet_v2_96x96_0.35.tflite` - Fine tuned Pre-trained model using MobileNet V2 in [Edge Impulse](https://www.edgeimpulse.com)
+- `models/simple_model_5_class.tflite` - A simple CNN architecture build using Edge Impulse.
 
 ## Steps to Recreate
 - Connect the OpenMV device to the system
-- Copy the `gesture_led_wifi.py`, model 1/model 2, labels.txt file onto the OpenMV device
+- Copy the `gesture_led_wifi.py`, mobilenet_v2_96x96_0.35.tflite/simple_model_5_class.tflite, labels.txt file onto the OpenMV device
 - Update the IP address of the device the Esp 32 is connected.
 - Run the code
 
@@ -39,12 +39,14 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Added Data for each class numbering from 21 to 40
 
 ### Custom model Development with Ryan
+#### Architeture
+![simple model architecture](assets/simple_model_architecture.png)
 #### **Model Iteration & Performance**
 |Iteration| Timeline | Strategy | Train Acc. | Test Acc. | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **V1 (Initial)** | 21 to 23 Apr  |Base collected data | 79.5%| 82.2% | Directional classes > 80%; "Unknown" class at 50%  |
 | **V2 (Hybrid)** | 24 to 25 Apr |50% Original + 50% Augmented  | 69.0%  | 61.03%  | Attempted to reduce background bias  |
-| **V3 (Final)** |26 to 27 Apr|Entire Augmented Dataset  | **96.9%**  | **94.8%**  | Achieved peak performance; noted plane background bias . |
+| **V3 (Final)** |26 to 27 Apr|Entire Augmented Dataset  | **96.9%**  | **94.8%**  | Achieved peak performance; noted plane background bias .(Refer to [confusion matrix of 2 diferent models](assets/simple_model_v3_acccuracy.png) |
 
 
 ### Ryan 
