@@ -49,7 +49,7 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 | Forward  | D14       | LED 3 |
 | Backward | D27       | LED 4 |
 
-- Each LED connected via 220Ω resistor to ESP32 GPIO pin
+- Each LED connected via 100Ω resistor to ESP32 GPIO pin
 - All LED cathodes connected to ESP32 GND
 - Both OpenMV and ESP32 must be on the same WiFi network
 
