@@ -137,17 +137,32 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Tested end-to-end pipeline: OpenMV → WiFi → ESP32 → LED
 
 ### Musab
-- 20-April
-    - Pulled Snapshot.py. Run on OpenMV. 
-    - Forgot to remove lens cap and "took" photos initially. Was pointed out by roomate
-    - Encountered corrupted photos and unable to access files on device flash
-    
-- 21-April
-    - Added file handling to snapshot.py to fix corrupted files. 
-    - Updated dataset 80-100 with 4 specified classes.
-    - Added Unknown class of variables as discussed on call
-    - Suggest using https://www.kaggle.com/datasets/gti-upm/leapgestrecog/data to populate classes for more data variety
+- 20 April
+    - Pulled `Snapshot.py`. Run on OpenMV.
+    - Forgot to remove lens cap and "took" photos initially. Was pointed out by roommate.
+    - Encountered corrupted photos and unable to access files on device flash.
 
+- 21 April
+    - Diagnosed root cause of file corruption — RT1062 mounts writable storage at `/flash/` 
+      not `/` unlike older OpenMV boards. Fixed all save paths accordingly.
+    - Wrote file handling code and uploaded
+    - Suggested using https://www.kaggle.com/datasets/gti-upm/leapgestrecog/data to 
+      populate classes with more data variety.
+    - Added `SNAPSHOT NOTES.md` documenting all snapshot.py changes line by line.
+
+- 23–25 April
+    - Built full Google Colab training pipeline from scratch.
+    - Designed Custom CNN architecture (3 conv blocks, GAP, Dropout) with design decisions 
+      justified against RT1062 8MB RAM constraint.
+    - Integrated Ryan's augmented Kaggle dataset (13,000 images) via Kaggle API into pipeline.
+
+- 25–28 April
+    - Diagnosed TFLite schema incompatibility — TF 2.19 exports TFL3 schema, OpenMV 
+      firmware only supports TFL2. Resolved via binary flatbuffer byte patch
+    - Diagnosed tensor allocation failure at all arena sizes despite 8MB free RAM — 
+    - Redesigned model input from 96×96 RGB to 48×48 grayscale, reducing largest 
+      intermediate tensor from 18,432 to 2,304 bytes to fit within RT1062 tensor arena.
+  
 
 ### Abhishek
 - 18 April 2026
