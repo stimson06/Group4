@@ -139,7 +139,6 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
 ### Musab
 - 20-April
     - Pulled Snapshot.py. Run on OpenMV. 
-    - Forgot to remove lens cap and "took" photos initially. Was pointed out by roomate
     - Encountered corrupted photos and unable to access files on device flash
     
 - 21-April
@@ -147,7 +146,13 @@ Dectect the hand gesture (Left, Right, Up or Down) and turn on the LED using the
     - Updated dataset 80-100 with 4 specified classes.
     - Added Unknown class of variables as discussed on call
     - Suggest using https://www.kaggle.com/datasets/gti-upm/leapgestrecog/data to populate classes for more data variety
-
+- 23 April
+    - Trained simple CNN model `simple_cnn_colab.png` on Google Colab. Model achieved 99% validation accuracy. Model size 1,138 KB `best_gesture_cnn_colab.keras`. 
+- 25 April 
+    - Quantized to INT8 and tried to deploy on device. Tensor allocation error faced. Final size 102 KB. `gesture_cnn_int8_tfl2_colab.tflite`
+    - Error fix was found to be converting tflite schema from v3 to v2.
+    - Converted to v2 schema. Failed to deploy on device.
+    - Setup physical breadboard with LED & deployed Stimson's model. Worked with desired outputs.
 
 ### Abhishek
 - 18 April 2026
